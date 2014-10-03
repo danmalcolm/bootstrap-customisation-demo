@@ -10,7 +10,7 @@ module.exports = function (grunt) {
   // Project configuration.
   grunt.initConfig({
 
-    themePath: 'mountaingoat/',
+    themePath: 'myproject-1/',
 	bootStrapPath: '../bootstrap/',
     
     // Task configuration.	
