@@ -1,6 +1,5 @@
 /*!
   */
-
 module.exports = function (grunt) {
   'use strict';
 
@@ -10,11 +9,11 @@ module.exports = function (grunt) {
   // Project configuration.
   grunt.initConfig({
 
-    themePath: 'myproject-1/',
+    themePath: 'mytheme-1/',
 	bootStrapPath: '../bootstrap/',
+	targetCssPath: 'myproject-1/css/',
     
     // Task configuration.	
-
 	clean: {
       after: ['<%=bootStrapPath%>less/bak']
     },
@@ -37,6 +36,12 @@ module.exports = function (grunt) {
 		flatten: true,
         src: 'bak/less/variables.less',
         dest: '<%=bootStrapPath%>/less/'
+	  },
+	  'update-target': {
+		expand: true,
+		flatten: true,
+		src: '<%= bootStrapPath %>dist/css/*',
+		dest: '<%= targetCssPath %>'
 	  }
     },
 	
@@ -57,5 +62,5 @@ module.exports = function (grunt) {
   require('load-grunt-tasks')(grunt, {scope: 'devDependencies'});
   require('time-grunt')(grunt);
 
-  grunt.registerTask('default', ['copy:backup', 'copy:customise', 'shell:buildBootstrap', 'copy:restore' ]);
+  grunt.registerTask('default', ['copy:backup', 'copy:customise', 'shell:buildBootstrap', 'copy:restore', 'copy:update-target' ]);
 };
